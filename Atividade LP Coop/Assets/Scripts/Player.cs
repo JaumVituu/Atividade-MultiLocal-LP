@@ -28,7 +28,7 @@ public class Player : MonoBehaviour
     {
         gameObject.transform.localScale = new Vector2(currentSide,1f);
         Anima();
-        Debug.Log(InputHorizontal);
+        //Debug.Log(InputHorizontal);
         Ataca();
     }
 

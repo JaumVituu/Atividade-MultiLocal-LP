@@ -7,6 +7,10 @@ TagManager:
   - Berserker
   - Vandal
   - Leo
+  - ChainSaw
+  - Undefined
+  - Axe
+  - Felipe
   layers:
   - Default
   - TransparentFX
