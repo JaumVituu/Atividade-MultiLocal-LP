@@ -124,7 +124,7 @@ MonoBehaviour:
   target: {fileID: 0}
   dieAnimation: {fileID: 1182594696283447679, guid: 346f84690eb63dd4d8900c053f56751d, type: 3}
   direction: 0
-  life: 1
+  life: 10
 --- !u!61 &4187830604303286635
 BoxCollider2D:
   m_ObjectHideFlags: 0
