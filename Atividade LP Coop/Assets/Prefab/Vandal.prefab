@@ -148,6 +148,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1
   Axe: {fileID: 0}
+  ChainSaw: {fileID: 4325030658493190654, guid: fcf4173d10009dd46aa6eccaf8d043ee, type: 3}
+  dieAnimation: {fileID: 8819966071962695544, guid: 32352c214d612564c91abaac32d386bc, type: 3}
 --- !u!50 &932734518356801121
 Rigidbody2D:
   serializedVersion: 4

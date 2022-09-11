@@ -8,20 +8,26 @@ public class Enemy : MonoBehaviour
     public float speed;
     public GameObject target;
     public GameObject dieAnimation;
+    public GameObject gameOverAnimation;
     private GameObject gameSystem;
-    public int direction;
+    public int[] direction;
     public int life;
     SpriteRenderer spriteColor;
     float delay;
+    
+
     void Start()
     {
+        gameSystem = GameObject.Find("System");
+        direction = new int[2];
         delay = 0;
         rb = GetComponent<Rigidbody2D>();
-        spriteColor = GetComponent<SpriteRenderer>();
+        spriteColor = GetComponent<SpriteRenderer>();      
     }
 
     void Update()
     {
+        
         if(life <= 0){
             Morrer();
         }
@@ -32,25 +38,44 @@ public class Enemy : MonoBehaviour
     }
     
     void FixedUpdate(){
-        //Debug.Log(Mathf.Round(this.transform.position.x*10));
+
+        if(gameSystem.GetComponent<Game>().isGameOver){        
+            GameObject explosion = Instantiate(gameOverAnimation, target.transform.position + new Vector3(0,0.25f,0), Quaternion.identity);
+            Destroy(explosion, explosion.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length);
+            Morrer();
+        }
+
+        Debug.Log(Mathf.Round(this.transform.position.x*30));
         if(this.tag == "Leo"|| this.tag =="Felipe"){         
-            if(Mathf.Round(this.transform.position.x*10) != target.transform.position.x){
-                rb.velocity = new Vector2(1*direction*speed,0);
+            if(Mathf.Round(this.transform.position.x*20) != target.transform.position.x){
+                rb.velocity = new Vector2(1*direction[0]*speed,0);
             }
             else{
-                rb.velocity = new Vector2(0,0);
+
+                if(Mathf.Round(this.transform.position.y*20) != target.transform.position.x){ 
+                    rb.velocity = new Vector2(0,1*direction[1]*speed);
+                }
+
+                if(Mathf.Round(this.transform.position.y*20) < target.transform.position.y){
+                    direction[1] = 1;
+                }
+
+                if(Mathf.Round(this.transform.position.y*20) > target.transform.position.y){
+                    direction[1] = -1;
+                }
+            }
+                           
             }
 
-            if(Mathf.Round(this.transform.position.x*10) <= target.transform.position.x){
-                direction = 1;
+            if(Mathf.Round(this.transform.position.x*20) < target.transform.position.x){
+                direction[0] = 1;
             }        
-            else if(Mathf.Round(this.transform.position.x*10) > target.transform.position.x){
-                direction = -1;
+            else if(Mathf.Round(this.transform.position.x*20) > target.transform.position.x){
+                direction[0] = -1;
                 this.transform.localScale = new Vector2(-1f,1f);
             }
                                   
         }
-    }
 
     void OnTriggerEnter2D(Collider2D colisao){
         if(colisao.tag == "ChainSaw" || colisao.tag == "Axe"){
@@ -63,10 +88,11 @@ public class Enemy : MonoBehaviour
             if(delay <= 0){
                 spriteColor.color = Color.red;
                 delay = 0.25f;
-            }
-            
-            
-            
+            }          
+        }
+        if(colisao.gameObject.tag == "Marmita"){
+            colisao.gameObject.GetComponent<SpriteRenderer>().color = Color.gray;
+            gameSystem.GetComponent<Game>().isGameOver = true;
         }
     }
 
@@ -79,7 +105,6 @@ public class Enemy : MonoBehaviour
         }
         Destroy (smoke, smoke.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length);
         if(this.tag == "Leo" || this.tag == "Felipe"){
-            gameSystem = GameObject.Find("System");
             if(gameSystem != null){
                 Debug.Log("ok");
             }

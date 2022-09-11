@@ -76,7 +76,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 3
   m_Sprite: {fileID: 2047764270, guid: c52c3f23d0a935d449b10cc731198a70, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -146,10 +146,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e51b0cddfe000a246a31c83deae65db5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.25
+  speed: 0.125
   target: {fileID: 3110430107000402208, guid: 95f88685cfb7f784bbeecfeec17507d3, type: 3}
   dieAnimation: {fileID: 1182594696283447679, guid: 346f84690eb63dd4d8900c053f56751d, type: 3}
-  direction: 0
+  gameOverAnimation: {fileID: 71399862836943406, guid: 2188518ea9a10d54183e74cbb8720c43, type: 3}
+  direction: 
   life: 1
 --- !u!50 &5219163766273779930
 Rigidbody2D:

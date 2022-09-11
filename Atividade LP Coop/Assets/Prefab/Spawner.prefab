@@ -13,7 +13,7 @@ GameObject:
   m_Layer: 0
   m_Name: Spawner
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -45,4 +45,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Leo: {fileID: 5219163766273779934, guid: 1e2578502b180614faa0dedd6a92a67b, type: 3}
-  Felipe: {fileID: 0}
+  Felipe: {fileID: 4187830604303286625, guid: dba9a84e869a1464fbe008fcb11f4d44, type: 3}
+  Boost: {fileID: 6091615073631494764, guid: f1d46abff7c5b7242a34433d90cced13, type: 3}
