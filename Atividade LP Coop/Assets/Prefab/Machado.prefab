@@ -162,7 +162,7 @@ GameObject:
   - component: {fileID: 1970002001619957738}
   - component: {fileID: 6093507531179520550}
   - component: {fileID: 7941653268695112242}
-  - component: {fileID: -5726507198154505267}
+  - component: {fileID: 2281342543346171387}
   m_Layer: 0
   m_Name: Machado
   m_TagString: Axe
@@ -291,8 +291,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!61 &-5726507198154505267
-BoxCollider2D:
+--- !u!58 &2281342543346171387
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -305,15 +305,5 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.2, y: 0.26}
-    newSize: {x: 0.2, y: 0.26}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.2, y: 0.26}
-  m_EdgeRadius: 0
+  m_Radius: 0.13

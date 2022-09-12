@@ -50,7 +50,8 @@ public class Player : MonoBehaviour
             poUpDuration -=Time.deltaTime;
             animacao.speed = 1.5f;
             if(this.gameObject.tag == "Vandal"){
-                ChainSaw.GetComponent<Animator>().speed = 3f;
+                ChainSaw.GetComponent<Animator>().speed = 3f + system.GetComponent<Game>().currentTime/500;
+                //Debug.Log(ChainSaw.GetComponent<Animator>().speed);
             }
             if(this.gameObject.tag == "Berserker"){
                 Axe.GetComponent<Animator>().speed = 3f;
@@ -110,7 +111,7 @@ public class Player : MonoBehaviour
             
         colldown -= Time.deltaTime;
         if(this.tag == "Berserker"){
-            if(Input.GetMouseButtonDown(0)){
+            if(Input.GetMouseButton(0)){
                 if(colldown <= 0f){
                     GameObject axe = Instantiate(Axe, transform.position + new Vector3(0,0.2f,0), Quaternion.identity);
                     axe.GetComponent<Rigidbody2D>().velocity = new Vector2 (2*currentSide*axeBuff,0);
@@ -118,13 +119,14 @@ public class Player : MonoBehaviour
                         colldown = 0.5f;
                     }
                     else{
-                        colldown = 0.125f;
+                        colldown = 0.3f - system.GetComponent<Game>().currentTime/750;
+                        Debug.Log(colldown);
                     }                     
                 } 
             }
         }
         if(this.tag == "Vandal"){
-            if(Input.GetKeyDown(KeyCode.Space)){
+            if(Input.GetKey(KeyCode.Space)){
                 ChainSaw.GetComponent<Animator>().SetBool("IsAttacking",true);
             }
             else{

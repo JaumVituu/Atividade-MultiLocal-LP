@@ -105,11 +105,16 @@ public class Enemy : MonoBehaviour
         }
         Destroy (smoke, smoke.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length);
         if(this.tag == "Leo" || this.tag == "Felipe"){
-            if(gameSystem != null){
-                Debug.Log("ok");
+            if(gameSystem.GetComponent<Game>().isGameOver == false){
+                if(this.tag == "Felipe"){
+                gameSystem.GetComponent<Game>().score += 5;
             }
-            gameSystem.GetComponent<Game>().points += 1;
-            Debug.Log(gameSystem.GetComponent<Game>().points);
+            if(this.tag == "Leo"){
+                gameSystem.GetComponent<Game>().score += 1;
+            }
+            }
+            
+            Debug.Log(gameSystem.GetComponent<Game>().score);
             Destroy(gameObject);
         }
     }

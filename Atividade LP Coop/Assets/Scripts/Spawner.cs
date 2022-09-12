@@ -29,18 +29,28 @@ public class Spawner : MonoBehaviour
         }
         if(cooldown[0] <= 0f){
             Instantiate (Leo, transform.position + new Vector3(0f,Random.value,0f), Quaternion.identity);
-            cooldown[0] = Random.Range(2,10-cdCoeficient);
+            cooldown[0] = Random.Range(1,8-cdCoeficient);
         }
-
-        if(Mathf.Round(system.GetComponent<Game>().currentTime)%20 == 0 && Mathf.Round(system.GetComponent<Game>().currentTime) != 0){
-            if(alreadySpawned == false){
-                Instantiate (Felipe, transform.position + new Vector3(0f,Random.value,0f), Quaternion.identity);
-                alreadySpawned = !alreadySpawned;
-            }
+        
+        if (cdCoeficient <= 0){
+            if(Mathf.Round(system.GetComponent<Game>().currentTime)%20+cdCoeficient == 0 && Mathf.Round(system.GetComponent<Game>().currentTime) != 0){
+                if(alreadySpawned == false){
+                    Instantiate (Felipe, transform.position + new Vector3(0f,Random.value,0f), Quaternion.identity);
+                    alreadySpawned = !alreadySpawned;
+                }
+            }            
         }
         else{
-            alreadySpawned = false;
-        }
+            if(Mathf.Round(system.GetComponent<Game>().currentTime)%20 == 0 && Mathf.Round(system.GetComponent<Game>().currentTime) != 0){
+                if(alreadySpawned == false){
+                    Instantiate (Felipe, transform.position + new Vector3(0f,Random.value,0f), Quaternion.identity);
+                    alreadySpawned = !alreadySpawned;
+                }
+            }
+            else{
+                alreadySpawned = false;
+            }
+        }     
 
         if(cooldown[1] > 0f){
             cooldown[1] -= Time.deltaTime;
