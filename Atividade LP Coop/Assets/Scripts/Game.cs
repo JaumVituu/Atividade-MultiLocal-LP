@@ -14,6 +14,8 @@ public class Game : MonoBehaviour
     public Text gameOverText;
     public Button playAgainButton;
     public Button goToMenuButton;
+    public Text b_Catapult;
+    public Text v_Catapult;
     
     bool isEnd;
     void Start()

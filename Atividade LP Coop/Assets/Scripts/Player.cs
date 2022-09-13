@@ -37,15 +37,30 @@ public class Player : MonoBehaviour
     void Update()
     {
         if(system.GetComponent<Game>().score/100 >= catapultAmmount){
-            if(this.gameObject.tag == "Berserker" && Input.GetMouseButtonDown(1)){
-                Instantiate(Catapult, transform.position, Quaternion.identity);
-                catapultAmmount += 1;
+            if(this.gameObject.tag == "Berserker"){
+                //system.GetComponent<Game>().b_Catapult.gameObject.SetActive(true);
+                if(Input.GetMouseButtonDown(1)){
+                    Instantiate(Catapult, transform.position, Quaternion.identity);
+                    catapultAmmount += 1;
+                }
             }
-            if(this.gameObject.tag == "Vandal" && Input.GetKey(KeyCode.F)){
-                Instantiate(Catapult, transform.position, Quaternion.identity);
-                catapultAmmount += 1;
+            if(this.gameObject.tag == "Vandal"){
+                //system.GetComponent<Game>().b_Catapult.gameObject.SetActive(true);
+                if(Input.GetKey(KeyCode.F)){
+                    Instantiate(Catapult, transform.position, Quaternion.identity);
+                    catapultAmmount += 1;
+                }
             }
         }
+        else{
+            if(this.gameObject.tag == "Berserker"){
+                //system.GetComponent<Game>().b_Catapult.gameObject.SetActive(false);
+            }
+            if(this.gameObject.tag == "Vandal"){
+                //system.GetComponent<Game>().v_Catapult.gameObject.SetActive(false);
+            }
+        }
+
         if(poUpDuration <= 0f){
             speed = 1f;
             GetComponent<SpriteRenderer>().color = Color.white;
