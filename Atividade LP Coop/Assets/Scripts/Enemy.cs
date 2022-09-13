@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Enemy : MonoBehaviour
 {
@@ -22,7 +23,14 @@ public class Enemy : MonoBehaviour
         direction = new int[2];
         delay = 0;
         rb = GetComponent<Rigidbody2D>();
-        spriteColor = GetComponent<SpriteRenderer>();      
+        spriteColor = GetComponent<SpriteRenderer>();
+        if(SceneManager.GetActiveScene().name == "Night"){
+            speed += 0.25f;
+            if(this.gameObject.tag == "Felipe"){
+                life -= 5;
+                speed -= 0.15f;
+            }
+        }  
     }
 
     void Update()
@@ -45,7 +53,7 @@ public class Enemy : MonoBehaviour
             Morrer();
         }
 
-        Debug.Log(Mathf.Round(this.transform.position.x*30));
+        //Debug.Log(Mathf.Round(this.transform.position.x*30));
         if(this.tag == "Leo"|| this.tag =="Felipe"){         
             if(Mathf.Round(this.transform.position.x*20) != target.transform.position.x){
                 rb.velocity = new Vector2(1*direction[0]*speed,0);
@@ -93,6 +101,10 @@ public class Enemy : MonoBehaviour
         if(colisao.gameObject.tag == "Marmita"){
             colisao.gameObject.GetComponent<SpriteRenderer>().color = Color.gray;
             gameSystem.GetComponent<Game>().isGameOver = true;
+        }
+        if(colisao.gameObject.tag == "Boulder"){
+            Destroy(colisao.gameObject);
+            life -= 2;
         }
     }
 

@@ -11,12 +11,15 @@ public class Player : MonoBehaviour
     public float speed;
     public GameObject Axe;
     public GameObject ChainSaw;
+    public GameObject Catapult;
     float currentSide;
     float colldown;
     GameObject system;
     public GameObject dieAnimation;
     float poUpDuration;
     float axeBuff;
+    int catapultAmmount;
+
     
 
     void Start()
@@ -26,12 +29,23 @@ public class Player : MonoBehaviour
         currentSide = 1f;
         rb = GetComponent<Rigidbody2D>();
         animacao = GetComponent<Animator>();
-        poUpDuration = 0f; 
+        poUpDuration = 0f;
+        catapultAmmount = 1; 
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(system.GetComponent<Game>().score/100 >= catapultAmmount){
+            if(this.gameObject.tag == "Berserker" && Input.GetMouseButtonDown(1)){
+                Instantiate(Catapult, transform.position, Quaternion.identity);
+                catapultAmmount += 1;
+            }
+            if(this.gameObject.tag == "Vandal" && Input.GetKey(KeyCode.F)){
+                Instantiate(Catapult, transform.position, Quaternion.identity);
+                catapultAmmount += 1;
+            }
+        }
         if(poUpDuration <= 0f){
             speed = 1f;
             GetComponent<SpriteRenderer>().color = Color.white;

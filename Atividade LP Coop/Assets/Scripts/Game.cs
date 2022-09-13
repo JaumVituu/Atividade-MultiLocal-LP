@@ -28,35 +28,65 @@ public class Game : MonoBehaviour
 
     void Update()
     {
-        if(currentTime > PlayerPrefs.GetFloat("Time Record",0)){
-            timeText.text = ("Time: " + FormatTime(currentTime) + " \r\nNEW RECORD!");
-            timeText.color = Color.yellow;
-        }
-
-        if(score > PlayerPrefs.GetInt("Score Record", 0)){
-            teamScore.text = "Score: " + score + " \r\nNEW RECORD!";
-            teamScore.color = Color.yellow;
-        }
-
-        if(isGameOver == false){
-            currentTime += Time.deltaTime;
-            timeText.text = ("Time: " + FormatTime(currentTime));
-            teamScore.text = "Score: "+ score;
-        }
-        else{
-            if(currentTime > PlayerPrefs.GetFloat("Time Record",0)){
-                PlayerPrefs.SetFloat("Time Record", currentTime);
+        if (SceneManager.GetActiveScene().name == "Night"){
+            if(currentTime > PlayerPrefs.GetFloat("Night Time Record",0)){
+                timeText.text = ("Time: " + FormatTime(currentTime) + " \r\nNEW RECORD!");
+                timeText.color = Color.yellow;
             }
-            if(score > PlayerPrefs.GetInt("Score Record", 0)){
-                PlayerPrefs.SetInt("Score Record", score);
-            }
-            StartCoroutine(MostrarGameOver());
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-        }
 
+            if(score > PlayerPrefs.GetInt("Night Score Record", 0)){
+                teamScore.text = "Score: " + score + " \r\nNEW RECORD!";
+                teamScore.color = Color.yellow;
+            }
+
+            if(isGameOver == false){
+                currentTime += Time.deltaTime;
+                timeText.text = ("Time: " + FormatTime(currentTime));
+                teamScore.text = "Score: "+ score;
+            }
+            else{
+                if(currentTime > PlayerPrefs.GetFloat("Night Time Record",0)){
+                    PlayerPrefs.SetFloat("Night Time Record", currentTime);
+                }
+                if(score > PlayerPrefs.GetInt("Night Score Record", 0)){
+                    PlayerPrefs.SetInt("Night Score Record", score);
+                }
+                StartCoroutine(MostrarGameOver());
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+            }
         
                               
+        }
+
+        else{
+            if(currentTime > PlayerPrefs.GetFloat("Time Record",0)){
+                timeText.text = ("Time: " + FormatTime(currentTime) + " \r\nNEW RECORD!");
+                timeText.color = Color.yellow;
+            }
+
+            if(score > PlayerPrefs.GetInt("Score Record", 0)){
+                teamScore.text = "Score: " + score + " \r\nNEW RECORD!";
+                teamScore.color = Color.yellow;
+            }
+
+            if(isGameOver == false){
+                currentTime += Time.deltaTime;
+                timeText.text = ("Time: " + FormatTime(currentTime));
+                teamScore.text = "Score: "+ score;
+            }
+            else{
+                if(currentTime > PlayerPrefs.GetFloat("Time Record",0)){
+                    PlayerPrefs.SetFloat("Time Record", currentTime);
+                }
+                if(score > PlayerPrefs.GetInt("Score Record", 0)){
+                    PlayerPrefs.SetInt("Score Record", score);
+                }
+                StartCoroutine(MostrarGameOver());
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+            }
+        }
     }
 
     public string FormatTime( float time ){
@@ -78,5 +108,7 @@ public class Game : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-
+    public void IrMenu(){
+        SceneManager.LoadScene("Menu");
+    }
 }

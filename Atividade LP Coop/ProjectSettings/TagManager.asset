@@ -13,11 +13,12 @@ TagManager:
   - Felipe
   - Marmita
   - PowerUp
+  - Boulder
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Enemy
   - Water
   - UI
   - 
