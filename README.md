@@ -28,3 +28,5 @@ Esses valores mudam ao jogar no modo noite, sendo que ambos ficam mais rápidos,
 Existe um power up, representado por uma seta amarela, que dura 3 segundos. Ele aumenta a velocidade de ataque e de movimentação do jogador.
 
 O jogo é capaz de salvar recordes, que podem ser acessados através da guia "Records" no menu principal.
+
+Jogo por João Vitor dos Santos e Kaique Gonçalves Santos
