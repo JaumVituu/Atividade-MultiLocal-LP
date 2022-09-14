@@ -42,14 +42,16 @@ public class Player : MonoBehaviour
             if(this.gameObject.tag == "Berserker"){
                 system.GetComponent<Game>().b_Catapult.gameObject.SetActive(true);
                 if(Input.GetMouseButtonDown(1)){
-                    Instantiate(Catapult, transform.position, Quaternion.identity);
+                    GameObject Catapulta = Instantiate(Catapult, transform.position, Quaternion.identity);
+                    Destroy(Catapulta, 10f-system.GetComponent<Game>().currentTime/200);
                     catapultAmmount += 1;
                 }
             }
             if(this.gameObject.tag == "Vandal"){
                 system.GetComponent<Game>().v_Catapult.gameObject.SetActive(true);
                 if(Input.GetKey(KeyCode.F)){
-                    Instantiate(Catapult, transform.position, Quaternion.identity);
+                    GameObject Catapulta = Instantiate(Catapult, transform.position, Quaternion.identity);
+                    Destroy(Catapulta, 10f-system.GetComponent<Game>().currentTime/200);
                     catapultAmmount += 1;
                 }
             }
@@ -81,7 +83,7 @@ public class Player : MonoBehaviour
             poUpDuration -=Time.deltaTime;
             animacao.speed = 1.5f;
             if(this.gameObject.tag == "Vandal"){
-                ChainSaw.GetComponent<Animator>().speed = 3f + system.GetComponent<Game>().currentTime/500;
+                ChainSaw.GetComponent<Animator>().speed = 3f + system.GetComponent<Game>().currentTime/200;
                 //Debug.Log(ChainSaw.GetComponent<Animator>().speed);
             }
             if(this.gameObject.tag == "Berserker"){
@@ -146,10 +148,10 @@ public class Player : MonoBehaviour
                     GameObject axe = Instantiate(Axe, transform.position + new Vector3(0,0.2f,0), Quaternion.identity);
                     axe.GetComponent<Rigidbody2D>().velocity = new Vector2 (2*currentSide*axeBuff,0);
                     if(poUpDuration <= 0f){                   
-                        colldown = 0.5f;
+                        colldown = 0.4f;
                     }
                     else{
-                        colldown = 0.3f - system.GetComponent<Game>().currentTime/450;
+                        colldown = 0.2f - system.GetComponent<Game>().currentTime/750;
                         Debug.Log(colldown);
                     }                     
                 } 
