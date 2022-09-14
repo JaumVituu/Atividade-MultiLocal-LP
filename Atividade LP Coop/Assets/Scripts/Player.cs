@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     public GameObject Axe;
     public GameObject ChainSaw;
     public GameObject Catapult;
+    public new AudioSource audio;
     float currentSide;
     float colldown;
     GameObject system;
@@ -19,8 +20,6 @@ public class Player : MonoBehaviour
     float poUpDuration;
     float axeBuff;
     int catapultAmmount;
-
-    
 
     void Start()
     {
@@ -31,21 +30,24 @@ public class Player : MonoBehaviour
         animacao = GetComponent<Animator>();
         poUpDuration = 0f;
         catapultAmmount = 1; 
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        Ataca();
+        Anima();
         if(system.GetComponent<Game>().score/100 >= catapultAmmount){
             if(this.gameObject.tag == "Berserker"){
-                //system.GetComponent<Game>().b_Catapult.gameObject.SetActive(true);
+                system.GetComponent<Game>().b_Catapult.gameObject.SetActive(true);
                 if(Input.GetMouseButtonDown(1)){
                     Instantiate(Catapult, transform.position, Quaternion.identity);
                     catapultAmmount += 1;
                 }
             }
             if(this.gameObject.tag == "Vandal"){
-                //system.GetComponent<Game>().b_Catapult.gameObject.SetActive(true);
+                system.GetComponent<Game>().v_Catapult.gameObject.SetActive(true);
                 if(Input.GetKey(KeyCode.F)){
                     Instantiate(Catapult, transform.position, Quaternion.identity);
                     catapultAmmount += 1;
@@ -54,10 +56,10 @@ public class Player : MonoBehaviour
         }
         else{
             if(this.gameObject.tag == "Berserker"){
-                //system.GetComponent<Game>().b_Catapult.gameObject.SetActive(false);
+                system.GetComponent<Game>().b_Catapult.gameObject.SetActive(false);
             }
             if(this.gameObject.tag == "Vandal"){
-                //system.GetComponent<Game>().v_Catapult.gameObject.SetActive(false);
+                system.GetComponent<Game>().v_Catapult.gameObject.SetActive(false);
             }
         }
 
@@ -89,9 +91,7 @@ public class Player : MonoBehaviour
         }
 
         gameObject.transform.localScale = new Vector2(currentSide,1f);
-        Anima();
-        //Debug.Log(InputHorizontal);
-        Ataca();
+        
     }
 
     void FixedUpdate(){
@@ -136,27 +136,29 @@ public class Player : MonoBehaviour
         }
     }
 
-    void Ataca(){
-            
+    void Ataca(){      
+        Debug.Log("Atacou");     
         colldown -= Time.deltaTime;
         if(this.tag == "Berserker"){
             if(Input.GetMouseButton(0)){
                 if(colldown <= 0f){
+                    audio.Play();
                     GameObject axe = Instantiate(Axe, transform.position + new Vector3(0,0.2f,0), Quaternion.identity);
                     axe.GetComponent<Rigidbody2D>().velocity = new Vector2 (2*currentSide*axeBuff,0);
                     if(poUpDuration <= 0f){                   
                         colldown = 0.5f;
                     }
                     else{
-                        colldown = 0.3f - system.GetComponent<Game>().currentTime/750;
+                        colldown = 0.3f - system.GetComponent<Game>().currentTime/450;
                         Debug.Log(colldown);
                     }                     
                 } 
             }
         }
         if(this.tag == "Vandal"){
+            
             if(Input.GetKey(KeyCode.Space)){
-                ChainSaw.GetComponent<Animator>().SetBool("IsAttacking",true);
+                ChainSaw.GetComponent<Animator>().SetBool("IsAttacking",true); 
             }
             else{
                 ChainSaw.GetComponent<Animator>().SetBool("IsAttacking",false);

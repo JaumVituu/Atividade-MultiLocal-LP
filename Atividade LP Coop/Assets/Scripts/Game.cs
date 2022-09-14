@@ -16,6 +16,7 @@ public class Game : MonoBehaviour
     public Button goToMenuButton;
     public Text b_Catapult;
     public Text v_Catapult;
+    public new AudioSource audio;
     
     bool isEnd;
     void Start()
@@ -53,6 +54,7 @@ public class Game : MonoBehaviour
                 if(score > PlayerPrefs.GetInt("Night Score Record", 0)){
                     PlayerPrefs.SetInt("Night Score Record", score);
                 }
+
                 StartCoroutine(MostrarGameOver());
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
@@ -84,9 +86,11 @@ public class Game : MonoBehaviour
                 if(score > PlayerPrefs.GetInt("Score Record", 0)){
                     PlayerPrefs.SetInt("Score Record", score);
                 }
+                
                 StartCoroutine(MostrarGameOver());
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
+                
             }
         }
     }
@@ -98,8 +102,9 @@ public class Game : MonoBehaviour
     }
 
     IEnumerator MostrarGameOver(){
+        audio.Play();
         yield return new WaitForSeconds(2);
-        Debug.Log("Mostra texto");
+        //Debug.Log("Mostra texto");
         gameOverText.gameObject.SetActive(true);
         yield return new WaitForSeconds(1);
         playAgainButton.gameObject.SetActive(true);

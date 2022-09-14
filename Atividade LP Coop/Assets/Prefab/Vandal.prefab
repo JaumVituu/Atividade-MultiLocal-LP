@@ -76,7 +76,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 1412954053, guid: acf381eb7a83af74b828e0693fc641e4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -148,8 +148,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1
   Axe: {fileID: 0}
-  ChainSaw: {fileID: 4325030658493190654, guid: fcf4173d10009dd46aa6eccaf8d043ee, type: 3}
+  ChainSaw: {fileID: 0}
   Catapult: {fileID: 4183227158266210098, guid: 245ffa081954f2a459754e2bd5add21e, type: 3}
+  audio: {fileID: 0}
   dieAnimation: {fileID: 8819966071962695544, guid: 32352c214d612564c91abaac32d386bc, type: 3}
 --- !u!50 &932734518356801121
 Rigidbody2D:

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 
 public class Enemy : MonoBehaviour
@@ -11,10 +12,12 @@ public class Enemy : MonoBehaviour
     public GameObject dieAnimation;
     public GameObject gameOverAnimation;
     private GameObject gameSystem;
+    public GameObject deathSound;
     public int[] direction;
     public int life;
     SpriteRenderer spriteColor;
     float delay;
+    public new AudioSource[] audio = new AudioSource[3];
     
 
     void Start()
@@ -30,7 +33,11 @@ public class Enemy : MonoBehaviour
                 life -= 5;
                 speed -= 0.15f;
             }
-        }  
+        }
+
+        int audioSelector = (int)Mathf.Round(Random.value*2);
+        audio[audioSelector].Play();
+        Debug.Log(audioSelector);  
     }
 
     void Update()
@@ -111,6 +118,8 @@ public class Enemy : MonoBehaviour
     void Morrer(){
         
         GameObject smoke = Instantiate(dieAnimation,transform.position, Quaternion.identity);
+        
+       
         if(this.tag == "Felipe"){
             smoke.transform.localScale = new Vector2(2,2);
             smoke.transform.position = transform.position + new Vector3(0,0.2f,0);
@@ -120,13 +129,17 @@ public class Enemy : MonoBehaviour
             if(gameSystem.GetComponent<Game>().isGameOver == false){
                 if(this.tag == "Felipe"){
                 gameSystem.GetComponent<Game>().score += 5;
+                GameObject audioMorte = Instantiate(deathSound, transform.position, Quaternion.identity);
+                Destroy(audioMorte,3);
             }
             if(this.tag == "Leo"){
                 gameSystem.GetComponent<Game>().score += 1;
+                GameObject audioMorte = Instantiate(deathSound, transform.position, Quaternion.identity);
+                Destroy(audioMorte,3);
             }
             }
             
-            Debug.Log(gameSystem.GetComponent<Game>().score);
+            //Debug.Log(gameSystem.GetComponent<Game>().score);
             Destroy(gameObject);
         }
     }
